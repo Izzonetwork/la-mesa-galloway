@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Mesa Tequila & Taco Bar | Galloway, NJ</title>
+<meta name="description" content="Upscale tequila and taco bar in Galloway, New Jersey. Premium cocktails, house-made tacos, happy hour, and live music.">
+<style>
+  :root {
+    --bg: #0f0a08;
+    --card: #1a120f;
+    --accent: #e8a33d;
+    --accent-2: #c0392b;
+    --text: #f5f0e8;
+    --muted: #b8a99a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  header {
+    background: linear-gradient(135deg, #1a120f 0%, #2d1b14 100%);
+    padding: 20px 0;
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 2px solid var(--accent);
+  }
+  .nav { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-size: 1.8rem; font-weight: bold; color: var(--accent); letter-spacing: 1px; }
+  .logo span { color: var(--text); font-size: 0.9rem; display: block; font-weight: normal; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a { color: var(--text); font-size: 1rem; transition: color 0.2s; }
+  nav a:hover { color: var(--accent); }
+  .hero {
+    min-height: 85vh;
+    display: flex; align-items: center;
+    background: radial-gradient(ellipse at center, #2d1b14 0%, #0f0a08 70%);
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 16px; color: var(--text); }
+  .hero .tagline { font-size: 1.3rem; color: var(--accent); margin-bottom: 24px; font-style: italic; }
+  .hero p { max-width: 600px; margin: 0 auto 32px; color: var(--muted); font-size: 1.1rem; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #1a120f;
+    padding: 14px 36px; border-radius: 50px; font-weight: bold; font-size: 1.05rem;
+    transition: transform 0.2s, background 0.2s; border: none; cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); background: #f0b04a; text-decoration: none; }
+  .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
+  .btn-outline:hover { background: var(--accent); color: #1a120f; }
+  section { padding: 80px 0; }
+  .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 48px; color: var(--accent); }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .feature {
+    background: var(--card); padding: 36px 28px; border-radius: 12px;
+    border: 1px solid #3a2a22; text-align: center;
+  }
+  .feature h3 { color: var(--accent); font-size: 1.4rem; margin-bottom: 12px; }
+  .feature p { color: var(--muted); }
+  .about { background: var(--card); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .about-text h2 { font-size: 2rem; margin-bottom: 20px; color: var(--accent); }
+  .about-text p { color: var(--muted); margin-bottom: 16px; }
+  .stats { display: flex; gap: 32px; margin-top: 24px; }
+  .stat strong { display: block; font-size: 2rem; color: var(--accent); }
+  .stat span { color: var(--muted); font-size: 0.9rem; }
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .menu-card {
+    background: var(--card); border-radius: 12px; padding: 28px;
+    border-left: 4px solid var(--accent-2);
+  }
+  .menu-card h3 { color: var(--accent); margin-bottom: 16px; }
+  .menu-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #3a2a22; }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item span:first-child { color: var(--text); }
+  .menu-item span:last-child { color: var(--accent); font-weight: bold; }
+  .hours-location { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .info-block h3 { color: var(--accent); margin-bottom: 16px; font-size: 1.3rem; }
+  .info-block p, .info-block li { color: var(--muted); }
+  .info-block ul { list-style: none; }
+  .info-block li { padding: 6px 0; }
+  .cta-section { text-align: center; background: linear-gradient(135deg, #2d1b14, #1a120f); }
+  .cta-section h2 { font-size: 2.5rem; margin-bottom: 16px; }
+  .cta-section p { color: var(--muted); margin-bottom: 32px; font-size: 1.1rem; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  footer { background: #0a0605; padding: 40px 0; text-align: center; color: var(--muted); border-top: 1px solid #3a2a22; }
+  footer .logo { margin-bottom: 12px; }
+  .social { margin: 16px 0; }
+  .social a { margin: 0 12px; }
+  @media (max-width: 768px) {
+    .about-grid, .hours-location { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .hero { min-height: 70vh; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">LA MESA<span>Tequila & Taco Bar</span></div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#specials">Specials</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <a href="#reserve" class="btn">Reserve</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>La Mesa</h1>
+    <p class="tagline">Tequila & Taco Bar</p>
+    <p>Premium cocktails, house-made tacos, and a lively familia atmosphere on Jimmie Leeds Road in Galloway, New Jersey.</p>
+    <a href="#reserve" class="btn">Reserve a Table</a>
+  </div>
+</section>
+
+<section id="specials">
+  <div class="container">
+    <h2 class="section-title">Tonight's Highlights</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Happy Hour</h3>
+        <p>Daily at the bar & hi-tops, open to 7pm. Half-price tacos and apps before seven.</p>
+      </div>
+      <div class="feature">
+        <h3>Tequila Sundays</h3>
+        <p>Pour-focused Sunday service with an extensive tequila list and specials.</p>
+      </div>
+      <div class="feature">
+        <h3>Live Music</h3>
+        <p>Thu–Sat nights, plus Sunday sets. Upbeat tunes that keep the familia vibe alive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container about-grid">
+    <div class="about-text">
+      <h2>A neighborhood gem with casino-level hospitality</h2>
+      <p>La Mesa is Galloway's upscale tequila and taco bar — custom murals, upbeat music, and dishes prepped daily in-house. Treat every guest like family is the house rule.</p>
+      <p>Come for birria and filet mignon tacos. Stay for smoked table-side cocktails, an extensive tequila list, and the party room for groups up to thirty.</p>
+      <div class="stats">
+        <div class="stat"><strong>2022</strong><span>Established</span></div>
+        <div class="stat"><strong>30</strong><span>Party room seats</span></div>
+        <div class="stat"><strong>4.5★</strong><span>OpenTable rating</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="feature" style="text-align:left;">
+        <h3>Chef Emiliano Fernandez</h3>
+        <p>Full bar · Takeout & delivery · Handmade margarita mix</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <h2 class="section-title">From the Kitchen</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <h3>Signature Tacos</h3>
+        <div class="menu-item"><span>Birria Tacos</span><span>$25 / $37</span></div>
+        <div class="menu-item"><span>Filet Mignon Tacos</span><span>$28.75</span></div>
+        <div class="menu-item"><span>Surf & Turf Tacos</span><span>$26 / $39</span></div>
+        <div class="menu-item"><span>Al Pastor</span><span>$20 / $31</span></div>
+        <div class="menu-item"><span>Carne Asada</span><span>$23 / $35</span></div>
+        <div class="menu-item"><span>Bang Bang Shrimp</span><span>$20 / $32</span></div>
+      </div>
+      <div class="menu-card">
+        <h3>Cocktails & Tequila</h3>
+        <div class="menu-item"><span>House Margarita</span><span>Handcrafted</span></div>
+        <div class="menu-item"><span>Smoke Show (table-side)</span><span>Smoked</span></div>
+        <div class="menu-item"><span>Cóctel Carajillo</span><span>$15</span></div>
+        <div class="menu-item"><span>Horchata Cocktail</span><span>$10</span></div>
+        <div class="menu-item"><span>Extensive Tequila List</span><span>Premium</span></div>
+      </div>
+      <div class="menu-card">
+        <h3>More Favorites</h3>
+        <div class="menu-item"><span>Chile Relleno</span><span>$8</span></div>
+        <div class="menu-item"><span>Street Corn</span><span>$7</span></div>
+        <div class="menu-item"><span>Chicken Tortilla Soup</span><span>$8</span></div>
+        <div class="menu-item"><span>Churros</span><span>$11</span></div>
+        <div class="menu-item"><span>Tres Leches</span><span>—</span></div>
+        <div class="menu-item"><span>La Mesa Homemade Gelato</span><span>$10</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="container hours-location">
+    <div class="info-block">
+      <h3>Hours</h3>
+      <ul>
+        <li>Monday – Thursday: 4:00pm – 9:00pm</li>
+        <li>Friday: 4:00pm – 10:00pm</li>
+        <li>Saturday: 3:00pm – 10:00pm</li>
+        <li>Sunday: 3:00pm – 9:00pm</li>
+      </ul>
+    </div>
+    <div class="info-block">
+      <h3>Location</h3>
+      <p>325 E Jimmie Leeds Rd<br>Galloway, NJ 08205</p>
+      <p style="margin-top:16px;"><a href="tel:6097579977">(609) 757-9977</a></p>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=325+E+Jimmie+Leeds+Rd+Galloway+NJ" target="_blank">Get Directions</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="reserve" class="cta-section">
+  <div class="container">
+    <h2>Join the Familia</h2>
+    <p>Reserve your table or order takeout and delivery today.</p>
+    <div class="cta-buttons">
+      <a href="https://www.opentable.com/r/la-mesa-tequila-and-taco-bar-galloway" class="btn" target="_blank">Reserve on OpenTable</a>
+      <a href="https://www.lamesagalloway.com/_files/ugd/c69378_14bfeac15cf54c079d1928e87d73eb05.pdf" class="btn btn-outline" target="_blank">View Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo">LA MESA</div>
+    <p>Tequila & Taco Bar · Galloway, NJ</p>
+    <div class="social">
+      <a href="https://www.instagram.com/lamesagalloway" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/lamesagalloway" target="_blank">Facebook</a>
+    </div>
+    <p style="font-size:0.85rem; margin-top:16px;">© 2026 La Mesa Tequila & Taco Bar. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
