@@ -91,58 +91,130 @@ function Home() {
     const timer = window.setTimeout(() => scrollToId(id), 50);
     return () => window.clearTimeout(timer);
   }, []);
+  const faqs = [
+    {
+      q: "Where is La Mesa in Galloway?",
+      a: `${restaurant.address}. Call ${restaurant.phone}.`,
+    },
+    {
+      q: "How do I reserve a table?",
+      a: "Reserve on OpenTable. Call the restaurant for catering or a larger party.",
+    },
+    {
+      q: "What time does La Mesa open?",
+      a: `${hoursList.map((row) => `${row.day} ${row.label}`).join(". ")}.`,
+    },
+    {
+      q: "Do you deliver?",
+      a: "Yes. Order on DoorDash, Uber Eats, or Grubhub.",
+    },
+    {
+      q: "When is live music?",
+      a: flyer?.whenLabel
+        ? `${flyer.title}. ${flyer.whenLabel}.`
+        : "See the special event on this page.",
+    },
+  ];
+
+  const pageUrl = restaurant.website;
+  const restaurantId = `${pageUrl}#restaurant`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    name: restaurant.name,
-    image: [
-      `${restaurant.website}photos/bar-room.jpg`,
-      `${restaurant.website}photos/the-room.jpg`,
-      `${restaurant.website}logo.png`,
-    ],
-    telephone: restaurant.phone,
-    servesCuisine: ["Mexican", "Tex-Mex"],
-    priceRange: restaurant.priceRange,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "325 E Jimmie Leeds Rd",
-      addressLocality: "Galloway",
-      addressRegion: "NJ",
-      postalCode: "08205",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: restaurant.geo.latitude,
-      longitude: restaurant.geo.longitude,
-    },
-    url: restaurant.website,
-    hasMap: restaurant.mapsUrl,
-    hasMenu: restaurant.menus.food,
-    menu: restaurant.menus.food,
-    sameAs: [
-      restaurant.instagram,
-      restaurant.reserveUrl,
-      ...restaurant.order.map((s) => s.href),
-    ],
-    acceptsReservations: true,
-    openingHoursSpecification: hoursList.map((row) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: row.day,
-      opens: row.open,
-      closes: row.close,
-    })),
-    potentialAction: [
+    "@graph": [
       {
-        "@type": "ReserveAction",
-        target: restaurant.reserveUrl,
-        name: "Reserve a table",
+        "@type": "WebSite",
+        "@id": `${pageUrl}#website`,
+        url: pageUrl,
+        name: restaurant.name,
+        description: restaurant.seoDescription,
+        publisher: { "@id": restaurantId },
+        inLanguage: "en-US",
       },
-      ...restaurant.order.map((service) => ({
-        "@type": "OrderAction",
-        target: service.href,
-        name: `Order on ${service.name}`,
-      })),
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: restaurant.seoTitle,
+        description: restaurant.seoDescription,
+        isPartOf: { "@id": `${pageUrl}#website` },
+        about: { "@id": restaurantId },
+        primaryImageOfPage: `${pageUrl}photos/bar-room.jpg`,
+        inLanguage: "en-US",
+      },
+      {
+        "@type": ["Restaurant", "BarOrPub"],
+        "@id": restaurantId,
+        name: restaurant.name,
+        image: [
+          `${pageUrl}photos/bar-room.jpg`,
+          `${pageUrl}photos/the-room.jpg`,
+          `${pageUrl}photos/birria.jpg`,
+          `${pageUrl}logo.png`,
+        ],
+        telephone: restaurant.phoneTel,
+        servesCuisine: ["Mexican", "Tacos", "Tequila"],
+        priceRange: restaurant.priceRange,
+        currenciesAccepted: "USD",
+        foundingDate: String(restaurant.established),
+        alternateName: ["La Mesa Galloway", "La Mesa Tequila and Taco Bar"],
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "325 E Jimmie Leeds Rd",
+          addressLocality: "Galloway",
+          addressRegion: "NJ",
+          postalCode: "08205",
+          addressCountry: "US",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: restaurant.geo.latitude,
+          longitude: restaurant.geo.longitude,
+        },
+        url: pageUrl,
+        hasMap: restaurant.mapsUrl,
+        menu: `${pageUrl}#menu`,
+        hasMenu: {
+          "@type": "Menu",
+          name: "Food and drinks",
+          url: `${pageUrl}#menu`,
+        },
+        sameAs: [restaurant.instagram, restaurant.reserveUrl],
+        areaServed: [
+          { "@type": "City", name: "Galloway" },
+          { "@type": "City", name: "Egg Harbor Township" },
+          { "@type": "City", name: "Absecon" },
+          { "@type": "City", name: "Pomona" },
+          { "@type": "AdministrativeArea", name: "Atlantic County" },
+        ],
+        acceptsReservations: true,
+        openingHoursSpecification: hoursList.map((row) => ({
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: `https://schema.org/${row.day}`,
+          opens: row.open,
+          closes: row.close,
+        })),
+        potentialAction: [
+          {
+            "@type": "ReserveAction",
+            target: restaurant.reserveUrl,
+            name: "Reserve a table",
+          },
+          ...restaurant.order.map((service) => ({
+            "@type": "OrderAction",
+            target: service.href,
+            name: `Order on ${service.name}`,
+          })),
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      },
     ],
   };
 
@@ -252,19 +324,19 @@ function Home() {
               {p}
             </p>
           ))}
-          <ul className="mt-10 grid grid-cols-3 gap-4 border-t border-line pt-6">
+          <ul className="mt-10 grid grid-cols-3 gap-3 border-t border-line pt-6">
             <li>
-              <strong className="block font-display text-4xl">4.3</strong>
+              <strong className="block font-display text-3xl sm:text-4xl">4.3</strong>
               <span className="stamp mt-1 block text-muted">Google</span>
             </li>
             <li>
-              <strong className="block font-display text-4xl">
+              <strong className="block font-display text-3xl sm:text-4xl">
                 {restaurant.established}
               </strong>
               <span className="stamp mt-1 block text-muted">Family owned</span>
             </li>
             <li>
-              <strong className="block font-display text-4xl">
+              <strong className="block font-display text-3xl sm:text-4xl">
                 {restaurant.banquetCapacity}
               </strong>
               <span className="stamp mt-1 block text-muted">Banquet seats</span>
@@ -444,9 +516,9 @@ function Home() {
         <div>
           <p className="eyebrow">Business info</p>
           <h2 className="display mt-2">{copy.visitHeadline}</h2>
-          <p className="mt-4 whitespace-pre-line text-muted">
+          <address className="mt-4 whitespace-pre-line text-muted not-italic">
             {restaurant.address}
-          </p>
+          </address>
           <p className="mt-2">
             <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
           </p>
@@ -525,7 +597,7 @@ function Home() {
                 >
                   Reserve on OpenTable
                 </a>
-                <a href={`tel:${restaurant.phoneTel}`} className="btn btn-line hidden sm:inline-flex">
+                <a href={`tel:${restaurant.phoneTel}`} className="btn btn-line w-full sm:w-auto">
                   Call {restaurant.phone}
                 </a>
               </div>
@@ -535,6 +607,19 @@ function Home() {
       </section>
 
       <PhotoGallery />
+
+      <section id="questions" className="snap band wrap">
+        <p className="eyebrow">Questions</p>
+        <h2 className="display mt-2">Before you come in</h2>
+        <div className="faq mt-8 max-w-3xl">
+          {faqs.map((item) => (
+            <details key={item.q}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <section id="contact" className="snap band wrap">
         <p className="eyebrow">Contact</p>
@@ -549,7 +634,7 @@ function Home() {
 
       <footer className="bg-fg py-12 pb-28 text-sm text-bg/70 md:pb-12">
         <div className="wrap grid gap-10 md:grid-cols-3">
-          <p className="flex items-start gap-3 text-bg">
+          <div className="flex items-start gap-3 text-bg">
             <a
               href="/"
               aria-label="La Mesa home"
@@ -558,13 +643,15 @@ function Home() {
               <SiteImg slot="logo" className="h-12 w-auto object-contain" />
             </a>
             <span>
-              {restaurant.name}
-              <br />
-              {restaurant.address}
-              <br />
-              <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
+              <address className="not-italic">
+                {restaurant.name}
+                <br />
+                {restaurant.address}
+                <br />
+                <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
+              </address>
             </span>
-          </p>
+          </div>
           <div>
             <p className="stamp text-accent">Today</p>
             <p className="mt-2 text-bg">{status.label}</p>

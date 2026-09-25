@@ -80,7 +80,7 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-fg text-bg">
+    <header className="site-header sticky top-0 z-50 bg-fg text-bg">
       <div className="wrap flex items-center justify-between py-2 md:py-4">
         <a
           href="/"

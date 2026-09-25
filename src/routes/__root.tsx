@@ -16,7 +16,10 @@ export const Route = createRootRoute({
         content: restaurant.seoDescription,
       },
       { name: "theme-color", content: "#1c110c" },
-      { name: "robots", content: "index, follow" },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1",
+      },
       { name: "geo.region", content: "US-NJ" },
       { name: "geo.placename", content: "Galloway" },
       {
@@ -30,6 +33,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "canonical", href: restaurant.website },
+      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
       { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon-192.png" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },

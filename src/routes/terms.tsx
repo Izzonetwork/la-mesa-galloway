@@ -7,8 +7,14 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { title: `${termsTitle} · ${restaurant.name}` },
+      {
+        name: "description",
+        content:
+          "Guest list terms for La Mesa Tequila & Taco Bar in Galloway, NJ. How email and text signups are used.",
+      },
       { name: "robots", content: "index, follow" },
     ],
+    links: [{ rel: "canonical", href: `${restaurant.website}terms` }],
   }),
   component: TermsPage,
 });

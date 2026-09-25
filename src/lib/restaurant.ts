@@ -7,9 +7,9 @@ export const restaurant = {
   mapsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=325+E+Jimmie+Leeds+Rd,+Galloway,+NJ+08205",
   geo: { latitude: 39.4631957, longitude: -74.4938152 },
-  seoTitle: "La Mesa Tequila & Taco Bar | Mexican Restaurant in Galloway, NJ",
+  seoTitle: "La Mesa Tequila & Taco Bar | Galloway, NJ",
   seoDescription:
-    "Mexican restaurant and tequila bar in Galloway, NJ. Birria tacos, tableside Smoke Show margaritas, and daily happy hour. Reserve on OpenTable or order delivery.",
+    "Mexican restaurant and tequila bar in Galloway, NJ. Birria tacos, margaritas, happy hour, and live music. Reserve or call (609) 757-9977.",
   instagram: "https://www.instagram.com/lamesagalloway/",
   reserveUrl:
     "https://www.opentable.com/r/la-mesa-tequila-and-taco-bar-galloway",

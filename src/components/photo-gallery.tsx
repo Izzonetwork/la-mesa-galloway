@@ -52,7 +52,7 @@ function LazyThumb({
           fetchPriority="low"
           sizes="(min-width: 768px) 25vw, 50vw"
           onLoad={() => setLoaded(true)}
-          className={`h-full w-full object-cover ${loaded ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 h-full w-full object-cover ${loaded ? "opacity-100" : "opacity-0"}`}
         />
       ) : (
         <span className="sr-only">{alt}</span>
