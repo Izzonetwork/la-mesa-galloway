@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /__grok/
+
+Sitemap: https://www.lamesagalloway.com/sitemap.xml
