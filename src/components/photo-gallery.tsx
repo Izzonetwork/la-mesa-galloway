@@ -77,6 +77,10 @@ export function PhotoGallery() {
 
   useEffect(() => {
     if (open === null) return;
+    const returnTo = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.getElementById("lightbox-close")?.focus();
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(null);
       if (e.key === "ArrowRight") {
@@ -89,7 +93,11 @@ export function PhotoGallery() {
       }
     }
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+      returnTo?.focus();
+    };
   }, [open, gallery.length]);
 
   const current = open === null ? null : gallery[open];
@@ -125,6 +133,7 @@ export function PhotoGallery() {
           onClick={() => setOpen(null)}
         >
           <button
+            id="lightbox-close"
             type="button"
             className="absolute right-4 top-4 inline-flex size-11 items-center justify-center border border-bg/20 text-bg"
             aria-label="Close photo"

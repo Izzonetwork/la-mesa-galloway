@@ -46,9 +46,8 @@ export const restaurant = {
     { day: "Sunday", open: "15:00", close: "21:00", label: "3:00pm – 9:00pm" },
   ],
   menus: {
-    food: "https://www.lamesagalloway.com/_files/ugd/c69378_14bfeac15cf54c079d1928e87d73eb05.pdf",
-    drinks:
-      "https://www.lamesagalloway.com/_files/ugd/c69378_3065d5928675459f9b27a8daf30e5824.pdf",
+    food: "",
+    drinks: "",
   },
   about: [
     "This upscale Mexican restaurant and bar was established in 2022 by the Vasilev family. They share authentic family recipes in a vibrant, family-oriented atmosphere.",

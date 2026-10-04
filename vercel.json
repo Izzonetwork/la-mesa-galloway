@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "lamesagalloway.com" }],
+      "destination": "https://www.lamesagalloway.com/:path*",
+      "permanent": true
+    }
+  ]
+}

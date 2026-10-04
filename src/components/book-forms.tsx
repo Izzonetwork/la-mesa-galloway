@@ -77,7 +77,9 @@ export function BookForms() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="size-4 shrink-0 text-accent" />
-              <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
+              <a className="tap" href={`tel:${restaurant.phoneTel}`}>
+                {restaurant.phone}
+              </a>
             </li>
           </ul>
           <div className="mt-6">

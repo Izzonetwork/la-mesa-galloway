@@ -25,6 +25,10 @@ export const Route = createFileRoute("/")({
         name: "description",
         content: restaurant.seoDescription,
       },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1",
+      },
     ],
     links: [
       { rel: "canonical", href: restaurant.website },
@@ -519,11 +523,14 @@ function Home() {
           <address className="mt-4 whitespace-pre-line text-muted not-italic">
             {restaurant.address}
           </address>
-          <p className="mt-2">
-            <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
+          <p>
+            <a className="tap" href={`tel:${restaurant.phoneTel}`}>
+              {restaurant.phone}
+            </a>
           </p>
-          <p className="mt-1">
+          <p>
             <a
+              className="tap"
               href={restaurant.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -531,8 +538,9 @@ function Home() {
               Get directions
             </a>
           </p>
-          <p className="mt-1">
+          <p>
             <a
+              className="tap"
               href={restaurant.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -648,7 +656,9 @@ function Home() {
                 <br />
                 {restaurant.address}
                 <br />
-                <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
+                <a className="tap" href={`tel:${restaurant.phoneTel}`}>
+                  {restaurant.phone}
+                </a>
               </address>
             </span>
           </div>
@@ -665,8 +675,9 @@ function Home() {
               Reserve
             </a>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col">
             <a
+              className="tap"
               href={restaurant.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -674,20 +685,24 @@ function Home() {
               Directions
             </a>
             <a
+              className="tap"
               href="#photos"
               onClick={(event) => handleHashClick(event, "#photos")}
             >
               Photos
             </a>
             <a
+              className="tap"
               href={restaurant.instagram}
               target="_blank"
               rel="noopener noreferrer"
             >
               Instagram
             </a>
-            <Link to="/terms">Guest list terms</Link>
-            <Link to="/admin" className="text-accent">
+            <Link to="/terms" className="tap">
+              Guest list terms
+            </Link>
+            <Link to="/admin" className="tap text-accent">
               Staff
             </Link>
           </div>

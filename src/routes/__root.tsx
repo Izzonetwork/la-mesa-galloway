@@ -1,25 +1,19 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
+import { NotFoundPage } from "@/components/not-found-page";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { SitePhotosProvider } from "@/components/site-photos";
 import { restaurant } from "@/lib/restaurant";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
+  notFoundComponent: NotFoundPage,
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: restaurant.seoTitle },
-      {
-        name: "description",
-        content: restaurant.seoDescription,
-      },
       { name: "theme-color", content: "#1c110c" },
-      {
-        name: "robots",
-        content: "index, follow, max-image-preview:large, max-snippet:-1",
-      },
+      { property: "og:locale", content: "en_US" },
       { name: "geo.region", content: "US-NJ" },
       { name: "geo.placename", content: "Galloway" },
       {
@@ -32,7 +26,6 @@ export const Route = createRootRoute({
       },
     ],
     links: [
-      { rel: "canonical", href: restaurant.website },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
       { rel: "icon", type: "image/png", sizes: "192x192", href: "/favicon-192.png" },

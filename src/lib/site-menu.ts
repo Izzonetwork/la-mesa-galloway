@@ -29,7 +29,19 @@ function slug(value: string) {
 }
 
 function prettyTitle(key: string) {
-  return key.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+  return key.charAt(0).toUpperCase() + key.slice(1);
+}
+
+/** Exact PDF URLs that used to live on the old Wix site and now 404. */
+const retiredMenuPdfs = new Set([
+  "https://www.lamesagalloway.com/_files/ugd/c69378_14bfeac15cf54c079d1928e87d73eb05.pdf",
+  "https://www.lamesagalloway.com/_files/ugd/c69378_3065d5928675459f9b27a8daf30e5824.pdf",
+]);
+
+function pdfLink(value: unknown, fallback: string) {
+  const raw = (typeof value === "string" ? value : fallback).trim();
+  if (!raw || retiredMenuPdfs.has(raw)) return "";
+  return raw.slice(0, 300);
 }
 
 function fromRecord(record: Record<string, MenuItem[]>, prefix: string): MenuCategory[] {
@@ -99,12 +111,8 @@ export function mergeMenu(raw: unknown): SiteMenu {
       typeof row.tacoNote === "string" && row.tacoNote.trim()
         ? row.tacoNote.trim().slice(0, 120)
         : defaultMenu.tacoNote,
-    foodPdf:
-      typeof row.foodPdf === "string" ? row.foodPdf.trim().slice(0, 300) : defaultMenu.foodPdf,
-    drinksPdf:
-      typeof row.drinksPdf === "string"
-        ? row.drinksPdf.trim().slice(0, 300)
-        : defaultMenu.drinksPdf,
+    foodPdf: pdfLink(row.foodPdf, defaultMenu.foodPdf),
+    drinksPdf: pdfLink(row.drinksPdf, defaultMenu.drinksPdf),
     food: asList(row.food, defaultMenu.food),
     drinks: asList(row.drinks, defaultMenu.drinks),
   };
