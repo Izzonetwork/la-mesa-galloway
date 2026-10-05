@@ -142,6 +142,8 @@ export function MenuEditor({
             value={draft.foodPdf}
             onChange={(e) => setDraft((p) => ({ ...p, foodPdf: e.target.value }))}
             maxLength={300}
+            placeholder="Optional link to a PDF"
+            inputMode="url"
           />
         </label>
         <label className="block text-sm text-muted">
@@ -151,6 +153,8 @@ export function MenuEditor({
             value={draft.drinksPdf}
             onChange={(e) => setDraft((p) => ({ ...p, drinksPdf: e.target.value }))}
             maxLength={300}
+            placeholder="Optional link to a PDF"
+            inputMode="url"
           />
         </label>
       </div>

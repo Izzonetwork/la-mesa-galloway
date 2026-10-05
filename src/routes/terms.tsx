@@ -37,7 +37,9 @@ function TermsPage() {
         ))}
         <p className="mt-12 text-sm text-muted">
           Questions:{" "}
-          <a href={`tel:${restaurant.phoneTel}`}>{restaurant.phone}</a>
+          <a className="tap" href={`tel:${restaurant.phoneTel}`}>
+            {restaurant.phone}
+          </a>
           {" · "}
           {restaurant.address}
         </p>

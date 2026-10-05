@@ -107,7 +107,7 @@ export function SiteHeader() {
             <a
               key={l.href}
               href={l.href}
-              className={`text-[0.95rem] tracking-wide hover:text-accent ${active === l.href ? "text-accent" : "text-bg/90"}`}
+              className={`inline-flex min-h-11 items-center text-[0.95rem] tracking-wide hover:text-accent ${active === l.href ? "text-accent" : "text-bg/90"}`}
               aria-current={active === l.href ? "true" : undefined}
               onClick={(event) => go(event, l.href)}
             >

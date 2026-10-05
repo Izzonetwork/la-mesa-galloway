@@ -7,7 +7,7 @@
   --color-muted: #6d5648;
   --color-primary: #a51d12;
   --color-accent: #c4a056;
-  --color-cta: #6b8f6e;
+  --color-cta: #4f664d;
   --color-line: rgb(28 17 12 / 0.14);
   --font-sans: "Figtree", system-ui, sans-serif;
   --font-display: "Fraunces", "Times New Roman", serif;
@@ -483,6 +483,13 @@
     font-weight: 650;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+  }
+
+  .dateline a,
+  .tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
   }
 
   .dateline > p > span {
