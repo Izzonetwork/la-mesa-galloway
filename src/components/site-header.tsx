@@ -99,7 +99,7 @@ export function SiteHeader() {
             width={480}
             height={359}
             sizes="120px"
-            className="h-10 w-auto object-contain md:h-16"
+            className="h-[4.25rem] w-auto object-contain md:h-16"
           />
         </a>
         <nav className="hidden items-center gap-5 xl:gap-6 lg:flex" aria-label="Primary">

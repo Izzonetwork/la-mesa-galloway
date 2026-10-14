@@ -588,7 +588,7 @@ function Home() {
 
       <section id="banquets" className="snap band">
         <div className="wrap">
-          <aside className="overlap overflow-hidden bg-fg">
+          <aside className="overlap bg-fg">
             <div className="photo-zoom">
               <SiteImg slot="banquets" className="photo overlap-photo" />
             </div>
